@@ -10,7 +10,7 @@
     # firefox
 
     # terminal
-    iosevka nerdfonts 
+    iosevka 
 
     # # hyprland
     #   # xdg-desktop-portal-hyprland # portal backend
@@ -61,6 +61,7 @@
       drbs = "darwin-rebuild switch --flake '/Users/jlewis/nix-darwin#'";
       treeg = "tree --gitignore";
       nd = "nix develop --command $SHELL";
+      ls = "ls --color=auto";
     };
     sessionVariables = {
       "VISUAL" = "${helix-fork.packages.aarch64-darwin.default}";
@@ -107,7 +108,7 @@
           style = "Bold";
         };
 
-        size = 14;
+        size = 16;
       };
 
       key_bindings = [
@@ -250,6 +251,7 @@
         color-modes = true;
         idle-timeout = 200;
         text-width = 80;
+        # undercurl = true;
       
         statusline = {
           mode.normal = "NORMAL";
@@ -333,6 +335,10 @@
           name = "wgsl";
           language-servers = [ "wgsl_analyzer" "copilot" ];
         }
+        {
+          name = "nix";
+          language-servers = [ "nil" "copilot" ];
+        }
       ];
     };
   };
@@ -344,6 +350,17 @@
         full_symbol = "🔋 ";
         charging_symbol = "⚡️ ";
         discharging_symbol = "💀 ";
+      };
+      character = {
+        success_symbol = "[ <->>](bold green)";
+        error_symbol = "[ <](bold green)[-](bold red)[>>](bold green)";
+      };
+      directory = {
+        truncation_length = 8;
+        truncation_symbol = ">";
+      };
+      git_status = {
+        deleted = "X";
       };
       nix_shell = {
         symbol = "❄️ ";

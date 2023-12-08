@@ -13,7 +13,7 @@
     };
     helix-fork = {
       url = "github:AlexanderDickie/helix/copilot";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     copilot-wrapped = {
       url = "./copilot-wrapped";

@@ -3,7 +3,9 @@
 "ui.background" = { bg = "background" }
 "ui.window" = { fg = "foreground" }
 "special" = "tertiary" # file picker fuzzy match
-"ui.background.separator" = { fg = "light_background" }
+"ui.background.separator" = { fg = "comment" }
+"ui.bufferline" = { fg = "comment", bg = "light_background" }
+"ui.bufferline.active" = { fg = "foreground" }
 "ui.text" = "foreground"
 "ui.text.inactive" = "comment"
 "ui.text.focus" = { modifiers = ["reversed"] } # file picker selected
@@ -56,9 +58,9 @@
 "diagnostic.error" = { underline = { color = "senary", style = "curl" } }
 "info" = "comment" 
 "hint" = "tertiary"
-"warning" = "background"
+"warning" = "tertiary"
 "error" = "senary"
-"debug" = "senary"
+"debug" = "comment"
 
 "diff.plus" = "secondary"
 "diff.delta" ="primary"
