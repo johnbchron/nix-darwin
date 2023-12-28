@@ -26,13 +26,13 @@
     configuration = { pkgs, copilot-wrapped, ... }: {
       environment.systemPackages = with pkgs; [
         # basic shell utils
-        wget curl git tree file unzip gzip
-  
+        wget curl git tree file unzip gzip  
+
         # why is docker here? idk. it's not a module :(
         docker
 
         # fancy shell utils
-        fzf btop bat
+        fzf btop bat eza
     
         # proxies and such
         cloudflared # used to proxy ssh

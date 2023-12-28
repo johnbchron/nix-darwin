@@ -61,7 +61,8 @@
       drbs = "darwin-rebuild switch --flake '/Users/jlewis/nix-darwin#'";
       treeg = "tree --gitignore";
       nd = "nix develop --command $SHELL";
-      ls = "ls --color=auto";
+      ls = "eza";
+      l = "eza -alh";
     };
     sessionVariables = {
       "VISUAL" = "${helix-fork.packages.aarch64-darwin.default}";
@@ -111,48 +112,145 @@
         size = 16;
       };
 
-      key_bindings = [
-        {
-          key = "N";
-          mods = "Command";
-          action = "ReceiveChar";
-        }
-      ];
+      # # aura theme
+      # key_bindings = [
+      #   {
+      #     key = "N";
+      #     mods = "Command";
+      #     action = "ReceiveChar";
+      #   }
+      # ];
 
+      # colors = {
+      #   primary = {
+      #     background = "#15141b";
+      #     foreground = "#edecee";
+      #   };
+
+      #   cursor.cursor = "#a277ff";
+
+      #   selection = {
+      #     text = "CellForeground";
+      #     background = "#29263c";
+      #   };
+
+      #   normal = {
+      #     black =   "#110f18";
+      #     red =     "#ff6767";
+      #     green =   "#61ffca";
+      #     yellow =  "#ffca85";
+      #     blue =    "#a277ff";
+      #     magenta = "#a277ff";
+      #     cyan =    "#61ffca";
+      #     white =   "#edecee";
+      #   };
+
+      #   bright = {
+      #     black =   "#4d4d4d";
+      #     red =     "#ff6767";
+      #     green =   "#61ffca";
+      #     yellow =  "#ffca85";
+      #     blue =    "#a277ff";
+      #     magenta = "#a277ff";
+      #     cyan =    "#61ffca";
+      #     white =   "#edecee";
+      #   };
+      # };
+
+      # catppuccin theme
       colors = {
         primary = {
-          background = "#15141b";
-          foreground = "#edecee";
+          background = "#1E1E2E"; # base
+          foreground = "#CDD6F4"; # text
+          # Bright and dim foreground colors
+          dim_foreground = "#CDD6F4"; # text
+          bright_foreground = "#CDD6F4"; # text
         };
 
-        cursor.cursor = "#a277ff";
+        # Cursor colors
+        cursor = {
+          text = "#1E1E2E"; # base
+          cursor = "#F5E0DC"; # rosewater
+        };
+        vi_mode_cursor = {
+          text = "#1E1E2E"; # base
+          cursor = "#B4BEFE"; # lavender
+        };
 
+        # Search colors
+        search = {
+          matches = {
+            foreground = "#1E1E2E"; # base
+            background = "#A6ADC8"; # subtext0
+          };
+          focused_match = {
+            foreground = "#1E1E2E"; # base
+            background = "#A6E3A1"; # green
+          };
+          footer_bar = {
+            foreground = "#1E1E2E"; # base
+            background = "#A6ADC8"; # subtext0
+          };
+        };
+
+        # Keyboard regex hints
+        hints = {
+          start = {
+            foreground = "#1E1E2E"; # base
+            background = "#F9E2AF"; # yellow
+          };
+          end = {
+            foreground = "#1E1E2E"; # base
+            background = "#A6ADC8"; # subtext0
+          };
+        };
+
+        # Selection colors
         selection = {
-          text = "CellForeground";
-          background = "#29263c";
+          text = "#1E1E2E"; # base
+          background = "#F5E0DC"; # rosewater
         };
 
+        # Normal colors
         normal = {
-          black =   "#110f18";
-          red =     "#ff6767";
-          green =   "#61ffca";
-          yellow =  "#ffca85";
-          blue =    "#a277ff";
-          magenta = "#a277ff";
-          cyan =    "#61ffca";
-          white =   "#edecee";
+          black = "#45475A"; # surface1
+          red = "#F38BA8"; # red
+          green = "#A6E3A1"; # green
+          yellow = "#F9E2AF"; # yellow
+          blue = "#89B4FA"; # blue
+          magenta = "#F5C2E7"; # pink
+          cyan = "#94E2D5"; # teal
+          white = "#BAC2DE"; # subtext1
         };
 
+        # Bright colors
         bright = {
-          black =   "#4d4d4d";
-          red =     "#ff6767";
-          green =   "#61ffca";
-          yellow =  "#ffca85";
-          blue =    "#a277ff";
-          magenta = "#a277ff";
-          cyan =    "#61ffca";
-          white =   "#edecee";
+          black = "#585B70"; # surface2
+          red = "#F38BA8"; # red
+          green = "#A6E3A1"; # green
+          yellow = "#F9E2AF"; # yellow
+          blue = "#89B4FA"; # blue
+          magenta = "#F5C2E7"; # pink
+          cyan = "#94E2D5"; # teal
+          white = "#A6ADC8"; # subtext0
         };
+
+        # Dim colors
+        dim = {
+          black = "#45475A"; # surface1
+          red = "#F38BA8"; # red
+          green = "#A6E3A1"; # green
+          yellow = "#F9E2AF"; # yellow
+          blue = "#89B4FA"; # blue
+          magenta = "#F5C2E7"; # pink
+          cyan = "#94E2D5"; # teal
+          white = "#BAC2DE"; # subtext1
+        };
+
+        indexed_colors = [
+          { index = 16; color = "#FAB387"; }
+          { index = 17; color = "#F5E0DC"; }
+        ];
       };
 
       # debug = {
@@ -241,7 +339,7 @@
     package = helix-fork.packages.aarch64-darwin.default;
     
     settings = {
-      theme = "aura";
+      theme = "catppuccin_macchiato";
 
       editor = {
         line-number = "relative";
@@ -303,6 +401,11 @@
           command = "${copilot-wrapped.packages.aarch64-darwin.default}/bin/copilot";
           args = [ "--stdio" ];
         };
+        rust-analyzer = {
+          config = {
+            checkOnSave = "clippy";
+          };
+        };
       };
 
       language = [
@@ -333,7 +436,8 @@
         }
         {
           name = "wgsl";
-          language-servers = [ "wgsl_analyzer" "copilot" ];
+          language-servers = [ "copilot" ];
+          indent = { tab-width = 2; unit = "  "; };
         }
         {
           name = "nix";
@@ -364,6 +468,7 @@
       };
       nix_shell = {
         symbol = "❄️ ";
+        format = "via [$symbol$state]($style) ";
       };
     };
     enableZshIntegration = true;
@@ -413,7 +518,7 @@
   programs.zellij = {
     enable = true;
     settings = {
-      theme = "dracula";
+      theme = "catppuccin-mocha";
       ui = {
         pane_frames = {
           rounded_corners = true;
