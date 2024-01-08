@@ -10,7 +10,7 @@
     # firefox
 
     # terminal
-    iosevka 
+    iosevka nil
 
     # # hyprland
     #   # xdg-desktop-portal-hyprland # portal backend
@@ -21,7 +21,7 @@
     #   iwd # networking
 
     # terminal utils
-    git typer just speedtest-cli neofetch gitui uair
+    typer just speedtest-cli neofetch gitui uair
 
     # zsh
     pure-prompt zsh-syntax-highlighting
@@ -82,6 +82,11 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      shell = {
+        program = "/bin/zsh";
+        args = [ "-c" "zellij" ];
+      };
+      
       window = {
         opacity = 1.0;
         startup_mode = "Fullscreen";
@@ -111,51 +116,6 @@
 
         size = 16;
       };
-
-      # # aura theme
-      # key_bindings = [
-      #   {
-      #     key = "N";
-      #     mods = "Command";
-      #     action = "ReceiveChar";
-      #   }
-      # ];
-
-      # colors = {
-      #   primary = {
-      #     background = "#15141b";
-      #     foreground = "#edecee";
-      #   };
-
-      #   cursor.cursor = "#a277ff";
-
-      #   selection = {
-      #     text = "CellForeground";
-      #     background = "#29263c";
-      #   };
-
-      #   normal = {
-      #     black =   "#110f18";
-      #     red =     "#ff6767";
-      #     green =   "#61ffca";
-      #     yellow =  "#ffca85";
-      #     blue =    "#a277ff";
-      #     magenta = "#a277ff";
-      #     cyan =    "#61ffca";
-      #     white =   "#edecee";
-      #   };
-
-      #   bright = {
-      #     black =   "#4d4d4d";
-      #     red =     "#ff6767";
-      #     green =   "#61ffca";
-      #     yellow =  "#ffca85";
-      #     blue =    "#a277ff";
-      #     magenta = "#a277ff";
-      #     cyan =    "#61ffca";
-      #     white =   "#edecee";
-      #   };
-      # };
 
       # catppuccin theme
       colors = {
